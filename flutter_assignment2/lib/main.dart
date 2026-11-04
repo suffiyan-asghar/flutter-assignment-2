@@ -27,7 +27,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Posts',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: Colors.indigo),
+      theme: ThemeData(
+        colorSchemeSeed: Colors.indigo,
+        appBarTheme: const AppBarTheme(
+          centerTitle: false,
+          scrolledUnderElevation: 0,
+        ),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          margin: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: BorderSide(color: Colors.indigo.withValues(alpha: 0.12)),
+          ),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+        ),
+      ),
       home: BlocProvider(
         create: (context) => PostBloc(getPosts)..add(FetchPosts()),
         child: const PostsPage(),
